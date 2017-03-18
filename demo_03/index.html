@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue 入门教程（三）</title>
+	<script src="https://unpkg.com/vue@2.2.4/dist/vue.js"></script>
+</head>
+<body>
+	<h2>这是一个Vue的入门教程</h2>
+	<p>这个 Demo 主要讲述 Vue 的整个生命周期</p>
+	<p>在生成 Vue 实例的过程中，实例会按照一个确定的生命周期进行生成，详细的生命周期如下图</p>
+	<a href="https://cn.vuejs.org/images/lifecycle.png" target="_black">
+		<img src="https://cn.vuejs.org/images/lifecycle.png" alt="Vue 生命周期图" style="height: 200px;">
+	</a>
+	<p>在这个过程中，一些方法（钩子）会被调用，比如 created 方法就会在 Vue 实例 Created 阶段被调用</p>
+	<p>下面我们对一些生命钩子进行定义,请打开控制台进行查看</p>
+	<div id="app" style="border: 1px solid;">
+		<p>{{str}}</p>
+		<input type="text" v-model="str">
+	</div>
+	<script>
+	 	var vm = new Vue({
+		 	el: "#app",
+		 	data: {
+		 		str: "请输入并查看控制台"
+		 	},
+		 	methods: {
+		 	},
+		 	beforeCreate: function(){
+		 		console.log("beforeCreate");
+		 	},
+		 	created: function(){
+		 		console.log("created");
+		 	},
+		 	beforeMount: function(){
+		 		console.log("beforeMount");
+		 	},
+		 	mounted: function(){
+		 		console.log("mounted");
+		 	},
+		 	beforeUpdate: function(){
+		 		console.log("beforeUpdate");
+		 	},
+		 	updated: function(){
+		 		console.log("updated");
+		 	}
+		 })
+	</script>
+
+	<p>需要注意的是，每一个钩子代表了 Vue 实例的一个状态，在不同的状态，某些属性值的获取会出现错误，某些方法并不能调用</p>
+	<div id="app_2" style="border: 1px solid;">
+		<p ref="str">{{str}}</p>
+	</div>
+	<script>
+	 	var vm = new Vue({
+		 	el: "#app_2",
+		 	data: {
+		 		str: "请查看控制台"
+		 	},
+		 	beforeCreate: function(){
+		 		console.log(this.str);
+		 	},
+		 	created: function(){
+		 		console.log(this.str);
+		 	},
+		 	beforeMount: function(){
+		 		console.log(this.$refs.str);
+		 	},
+		 	mounted: function(){
+		 		console.log(this.$refs.str);
+		 	}
+		 })
+	</script>
+</body>
+</html>

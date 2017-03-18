@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue 入门教程（二）</title>
+	<script src="https://unpkg.com/vue@2.2.4/dist/vue.js"></script>
+</head>
+<body>
+	<h2>这是一个 Vue 的入门教程</h2>
+	<p>这个 Demo 主要讲述 Vue 作为 MVVM 框架的响应式特性</p>
+	<p>对 Vue 实例属性的修改会实时反馈到 DOM；而通过 v-model 指令，可以将 DOM 输入传递到 Vue 实例</p>
+	<div id="app" style="border: 1px solid;">
+		<p>{{str}}</p>
+		<input type="text" v-model="str">
+	</div>
+	<script>
+		var app = document.querySelector("#app");
+	 	var vm = new Vue({
+		 	el: app,
+		 	data: {
+		 		str: "输入看看",
+		 	}
+		 })
+	</script>
+	<p>因为传入 Vue 构造函数的 data 参数会被绑定到实例的属性和 $data 属性对象的属性上，所以我们也可以通过修改这个属性来实现响应</p>
+	<input type="text" id="input">
+	<script>
+	 	document.querySelector("#input").addEventListener("change", function(e){
+	 		vm.str = e.target.value;
+	 		// vm.$data.str = e.target.value;
+	 	})
+	</script>
+</body>
+</html>

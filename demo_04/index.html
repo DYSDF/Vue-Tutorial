@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue 入门教程（四）</title>
+	<script src="https://unpkg.com/vue@2.2.4/dist/vue.js"></script>
+</head>
+<body>
+	<h2>这是一个Vue的入门教程</h2>
+	<p>这个 Demo 主要讲述 Vue 的计算属性</p>
+	<p>计算属性表现上和 Vue 实例的属性、方法一样，也是通过表达式输出结果，虽然 Vue 的指令和属性表达式支持各种计算，但是为了 html 部分看起来不那么复杂，这里推荐大家对于计算复杂的属性，应当使用计算属性</p>
+	<p>同时计算属性有一个特别重要的特性，那就是结果缓存。假设有一个计算需要消耗2s（夸张了），如果我们用表达式的话，那么每次读取这个值，都要消耗2s，但是用计算属性后就不一样了，第一次仍然消耗2s，但第二次读取时，就会直接从缓存中读取了</p>
+	<div id="app" style="border: 1px solid;">
+		<p>{{time()}}</p>
+		<p>{{time()}}</p>
+	</div>
+	<script>
+	 	var vm = new Vue({
+		 	el: "#app",
+		 	methods: {
+		 		time: function(){
+		 			var date = Date.now();
+		 			Array(1000000).forEach(function(){
+
+		 			})
+		 			return Date.now() - date;
+		 		}
+		 	}
+		 })
+	</script>
+	<p>通过计算属性，time 的值被缓存了，第二次读取时，直接读取了上一次的值，所以两个值永远一致</p>
+	<div id="app_1" style="border: 1px solid;">
+		<p>{{time}}</p>
+		<p>{{time}}</p>
+	</div>
+	<script>
+	 	var vm = new Vue({
+		 	el: "#app_1",
+		 	computed: {
+		 		time: function(){
+		 			var date = Date.now();
+		 			Array(1000000).forEach(function(){
+
+		 			})
+		 			return Date.now() - date;
+		 		}
+		 	}
+		 })
+	</script>
+</body>
+</html>

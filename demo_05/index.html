@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue 入门教程（五）</title>
+	<script src="https://unpkg.com/vue@2.2.4/dist/vue.js"></script>
+</head>
+<body>
+	<h2>这是一个 Vue 的入门教程</h2>
+	<p>这个 Demo 主要讲述 Vue 的 class 和 style 的绑定指令</p>
+	<p>对元素进行 class 绑定需要指令 v-bind:class，它接受一个对象，这个对象的键作为 class 值，而这个键所对应的值的布尔值决定这个键能不能添加到 DOM 对象中去</p>
+	<div id="app" v-bind:class="{active: isActive, warning: isWarning}" style="border: 1px solid;">
+		<p>active：{{isActive}}</p>
+		<p>warning：{{isWarning}}</p>
+	</div>
+	<script>
+	 	var vm = new Vue({
+		 	el: "#app",
+		 	data: {
+		 		isActive: false,
+		 		isWarning: true
+		 	}
+		 })
+	</script>
+	<p>而 DOM 对象的 style 属性绑定指令为 v-bind:style，也是接受一个对象，并把这个对象的键值对作为 style 的值</p>
+	<div id="app_1" v-bind:style="style">{{style}}</div>
+	<script>
+	 	var vm = new Vue({
+		 	el: "#app_1",
+		 	data: {
+		 		style: {
+		 			border: '1px solid'
+		 		}
+		 	}
+		 })
+	</script>
+</body>
+</html>
